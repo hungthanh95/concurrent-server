@@ -218,6 +218,7 @@ void threadpool_destroy(threadpool_* thpool_p) {
 void threadpool_pause(threadpool_* thpool_p)
 {
     for (int n = 0; n < thpool_p->num_threads_alive; n++) {
+        printf("Pause on thread #%d\n", thpool_p->threads[n]->id);
         pthread_kill(thpool_p->threads[n]->pthread, SIGUSR1);
     }
 }
@@ -234,6 +235,7 @@ void threadpool_resume(threadpool_* thpool_p)
 {
     (void)thpool_p;
     threads_on_hold = 0;
+    printf("Resume all threads!!!\n");
 }
 
 
