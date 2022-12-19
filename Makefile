@@ -18,7 +18,8 @@ EXECUTABLES = 	sequential-server \
 				threadpool-test \
 				blocking-listener \
 				nonblocking-listener \
-				select-server
+				select-server \
+				epoll-server
 
 all: $(EXECUTABLES)
 
@@ -44,6 +45,9 @@ nonblocking-listener: $(COMM_FILES) $(SRC_DIR)/nonblocking-listener.c
 	$(CC) $(CCFLAGS) $^ -o $(BIN_DIR)/$@ $(LDFLAGS)
 
 select-server: $(COMM_FILES) $(SRC_DIR)/select-server.c
+	$(CC) $(CCFLAGS) $^ -o $(BIN_DIR)/$@ $(LDFLAGS)
+
+epoll-server: $(COMM_FILES) $(SRC_DIR)/epoll-server.c
 	$(CC) $(CCFLAGS) $^ -o $(BIN_DIR)/$@ $(LDFLAGS)
 
 .PHONY: clean format
